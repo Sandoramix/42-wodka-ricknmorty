@@ -18,7 +18,7 @@ const config: Config = {
       },
       minHeight: {
         perfect: `var(--full-height)`
-      }
+      },
     },
   },
   plugins: [],
