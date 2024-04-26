@@ -8,10 +8,12 @@ const inter = Inter({ subsets: ["latin"] });
 export const Layout = (props: PropsWithChildren) => {
 	return (
 		<main
-			className={`flex min-h-perfect flex-col items-center justify-between ${inter.className}`}
+			className={`flex h-perfect flex-col items-center justify-between ${inter.className} overflow-hidden`}
 		>
 			<Header></Header>
-			{props.children}
+			<div className="grow flex flex-col justify-start items-center overflow-y-auto overflow-x-hidden w-full p-3">
+				{props.children}
+			</div>
 			<Footer></Footer>
 		</main>
 	)
