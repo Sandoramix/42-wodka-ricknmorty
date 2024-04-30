@@ -33,8 +33,15 @@ This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next
 
 #### Learn More
 
-- [Link utili](https://docs.google.com/document/d/1rIu1pyK7xBNH6d7R0KlTJzn1xxtSQ04a-r2kQh6hmH4/edit)
-- [Obiettivo del progetto](https://docs.google.com/document/d/18iny_3VASRoBHP5T7_ozoD8sU_qr7woPMqDvNvvJCS4/edit)
+- [Documentazione api](https://rickandmortyapi.com/documentation)
+- [Client graphql dove fare i test](https://rickandmortyapi.com/graphql)
+- [Documentazione GraphQl](https://graphql.org/learn)
+- [Graphql vs REST, differenze](https://www.howtographql.com/basics/1-graphql-is-the-better-rest)
+- [Client per query](https://tanstack.com/query/latest)
+- [Piattaforma per capire tanstack, questionario](https://query.gg/?s=tanstack)
+- [Create react app](https://nextjs.org/docs/pages/api-reference/create-next-app)
+
+- Obiettivo del progetto: \<secret\>
 
 - [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
 - [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
