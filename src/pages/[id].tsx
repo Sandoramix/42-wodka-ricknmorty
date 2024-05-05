@@ -46,25 +46,25 @@ export default function CharacterPage() {
 
 	return (
 		<div className='w-full h-full flex justify-center items-center'>
-			<div className="rounded-md bg-zinc-800 shadow-lg p-2 max-w-screen-sm w-full">
+			<div className="rounded-md bg-zinc-800 shadow-lg p-2 max-w-[480px] min-w-[200px] w-full">
 				<div className="px-2 leading-none">
-					<Image quality={100} placeholder={`empty`} alt={character.name} src={character.image} width="0" height="0" sizes="100vw" className="max-w-screen-xl w-full rounded-md shadow-2xl aspect-square -translate-y-12 border-4 border-gray-950"></Image>
+					<Image quality={100} placeholder={`empty`} alt={character.name} src={character.image} width="0" height="0" sizes="100vw" className="max-w-screen-xl w-full rounded-md shadow-2xl aspect-square -translate-y-6 border-4 border-gray-950"></Image>
 
-					<div className="flex-col text-gray-300 -translate-y-6">
+					<div className="flex-col text-gray-300 -translate-y-2">
 
-						<h2 className="text-xl sm:text-3xl font-bold">{character.name}</h2>
-						<div className="text-base sm:text-xl flex justify-between px-6">
+						<h2 className="sm:text-2xl font-bold">{character.name}</h2>
+						<div className="text-xs sm:text-base flex justify-between px-6">
 							<span className="font-bold">{character.gender} - <span className={`${character.status == "Alive" ? `text-emerald-400` : character.status == 'unknown' ? `text-gray-400` : `text-red-400`}`}>{character.status}</span></span>
 						</div>
 						{
 							character.type &&
-							<div className="w-fit border border-cyan-500 text-gray-400 rounded-md px-4 py-2 m-2 select-none">Type: {character.type}</div>
+							<div className="w-fit border border-cyan-500 text-gray-400 rounded-md px-1 sm:px-4 py-2 sm:py-3 m-1 text-xs sm:text-base select-none">Type: {character.type}</div>
 						}
-						<div className="w-fit border border-cyan-500 text-gray-400 rounded-md px-4 py-2 m-2 select-none">Origin: {character.origin.name}</div>
-						<div className="w-fit border border-cyan-500 text-gray-400 rounded-md px-4 py-2 m-2 select-none">Location: {character.location.name}</div>
+						<div className="w-fit border border-cyan-500 text-gray-400 rounded-md px-1 sm:px-4 py-2 sm:py-3 m-1 select-none text-xs sm:text-base">Origin: {character.origin.name}</div>
+						<div className="w-fit border border-cyan-500 text-gray-400 rounded-md px-1 sm:px-4 py-2 sm:py-3 m-1 text-xs sm:text-base">Location: {character.location.name}</div>
 					</div>
 					<div className="text-xs flex flex-row-reverse">
-						<div className="w-fit border border-gray-400 text-gray-400 rounded-md px-4 py-2 m-2 select-none whitespace-nowrap">Created: {new Date(character.created).toISOString().substring(0, 10)}</div>
+						<div className="w-fit border border-gray-400 text-gray-400 rounded-md px-1 sm:px-4 py-2 sm:py-3 m-1 text-xs sm:text-base select-none whitespace-nowrap">Created: {new Date(character.created).toISOString().substring(0, 10)}</div>
 					</div>
 				</div>
 			</div>
