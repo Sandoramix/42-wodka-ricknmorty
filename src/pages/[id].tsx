@@ -2,8 +2,41 @@ import { GetStaticProps, InferGetStaticPropsType } from 'next'
 import { GetStaticPaths } from 'next'
 import { CharacterDto } from '../types/api';
 import Image from 'next/image';
+import { useQuery } from '@tanstack/react-query';
+import axios from 'axios';
+import { useRouter } from 'next/router';
+import { useEffect, useMemo, useState } from 'react';
 
-export default function CharacterPage({ character }: InferGetStaticPropsType<typeof getStaticProps>) {
+export default function CharacterPage() {
+	const router = useRouter();
+	const [isLoading, setIsLoading] = useState(true);
+	const [character, setCharacter] = useState<CharacterDto | null>(null);
+
+	useEffect(() => {
+		if (!router.query.id) {
+			return;
+		}
+		axios.get(`https://rickandmortyapi.com/api/character/${router.query.id}`)
+			.then(res => {
+				setCharacter(res.data);
+				setIsLoading(false);
+			})
+			.catch(err => {
+				setIsLoading(false);
+			});
+	}, [router.query.id]);
+
+	if (isLoading) {
+		return (<div className='backdrop-brightness-75 w-full h-full z-50 flex justify-center items-center'>
+			<div
+				className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-current border-e-transparent align-[-0.125em] text-surface motion-reduce:animate-[spin_1.5s_linear_infinite] dark:text-white"
+				role="status">
+				<span
+					className="!absolute !-m-px !h-px !w-px !overflow-hidden !whitespace-nowrap !border-0 !p-0 ![clip:rect(0,0,0,0)]"
+				>Loading...</span>
+			</div>
+		</div>)
+	}
 
 	if (!character) {
 		return <div className='w-full h-full flex justify-center items-center text-xl text-red-500'>
@@ -37,39 +70,4 @@ export default function CharacterPage({ character }: InferGetStaticPropsType<typ
 			</div>
 		</div>
 	)
-}
-
-export const getStaticPaths: GetStaticPaths = async (ctx) => {
-	const apiReq = await fetch("https://rickandmortyapi.com/api/character");
-	const apiData = await apiReq.json();
-	if (!apiReq.ok || !apiData || !apiData.info) {
-		return { paths: [], fallback: false }
-	};
-	const ids = Array(apiData.info.count).fill(0).map((val, idx) => (idx + 1).toString());
-	return {
-		paths: ids.map(id => ({ params: { id } })),
-		fallback: false
-	};
-}
-
-export const getStaticProps: GetStaticProps<{ character: CharacterDto | null }> = async (ctx) => {
-	console.log({ ctx });
-	let character: CharacterDto | null = null;
-
-	if (!ctx.params) {
-		return { props: { character } };
-	}
-	const { id } = ctx.params;
-	const req = await fetch(`https://rickandmortyapi.com/api/character/${id}`);
-	const data = await req.json();
-	if (!data) {
-		return { props: { character } }
-	}
-	character = data;
-
-	return {
-		props: {
-			character
-		}
-	}
 }
