@@ -19,6 +19,9 @@ const config: Config = {
       minHeight: {
         perfect: `var(--full-height)`
       },
+      screens: {
+        'xs': '540px'
+      }
     },
   },
   plugins: [],
